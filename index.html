@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OBS Custom Browser Source</title>
+    <script src="https://cdn.jsdelivr.net/npm/comfy.js@latest/dist/comfy.min.js"></script>
+    <style>
+        .rotate {
+            animation: rotation 1s 1 linear;
+        }
+
+        @keyframes rotation {
+            from {
+                transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(359deg);
+        }
+  }
+    </style>
+</head>
+
+<body>
+    <img id="spooky" src="/assets/spooky.png" width="200" />
+    <script>
+      ComfyJS.onCommand = (user, command, message, flags, extra) => {
+        if (command === "flip") {
+          const spooky = document.getElementById("spooky")
+          spooky.classList.add("rotate")
+          setTimeout(() => {
+            spooky.classList.remove("rotate")
+          }, 1000)
+        }
+      }
+  
+      ComfyJS.Init("222swim");
+    </script>
+</body>
+
+</html>
